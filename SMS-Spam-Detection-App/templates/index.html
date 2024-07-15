@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS Spam Detector</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Additional Custom Styles */
+        body {
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        h1 {
+            text-align: center; /* Center align the heading */
+        }
+        .result-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">SMS Spam Detector</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form id="smsForm">
+                    <div class="form-group">
+                        <label for="message">Enter the message:</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Type your message here..." onkeydown="if(event.keyCode==13){event.preventDefault(); predict();}"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Predict</button>
+                </form>
+                <div id="resultContainer" class="result-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Your Custom JavaScript -->
+    <script>
+        document.getElementById("smsForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            var form = event.target;
+            var formData = new FormData(form);
+            fetch("/predict", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                var resultContainer = document.getElementById("resultContainer");
+                resultContainer.innerHTML = ''; // Clear previous content
+                if (data.result === "Spam") {
+                    resultContainer.innerHTML = '<div class="alert alert-danger" role="alert">Spam</div>';
+                } else {
+                    resultContainer.innerHTML = '<div class="alert alert-success" role="alert">Not Spam</div>';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

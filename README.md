@@ -40,7 +40,7 @@ The system uses various evaluation metrics such as accuracy, precision, recall, 
 
 ## Acknowledgements
 
-- [OpenCV Documentation](https://docs.opencv.org/)
+
 - [Streamlit Documentation](https://docs.streamlit.io/)
 - [Flutter Documentation](https://flutter.dev/docs)
 - [NLP and Machine Learning Resources](https://www.nltk.org/)

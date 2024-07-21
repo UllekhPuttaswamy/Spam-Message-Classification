@@ -41,7 +41,7 @@ The system uses various evaluation metrics such as accuracy, precision, recall, 
 ## Acknowledgements
 
 
-- [Streamlit Documentation](https://docs.streamlit.io/)
+- [Flask Documentation](https://flask.palletsprojects.com/en/3.0.x/)
 - [Flutter Documentation](https://flutter.dev/docs)
 - [NLP and Machine Learning Resources](https://www.nltk.org/)
 - [Scikit-learn Documentation](https://scikit-learn.org/stable/)
